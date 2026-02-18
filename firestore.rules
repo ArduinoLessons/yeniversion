@@ -1,0 +1,14 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow anyone to write to the credentials and test_logs collections for now.
+    // This is insecure and should be changed for a production app.
+    match /credentials/{credentialId} {
+      allow write: if true;
+    }
+
+    match /test_logs/{testLogId} {
+      allow write: if true;
+    }
+  }
+}

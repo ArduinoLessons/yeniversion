@@ -1,0 +1,57 @@
+{
+  "entities": {
+    "credential": {
+      "title": "Credential",
+      "description": "Stores user login credentials.",
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "description": "User's username or email."
+        },
+        "password": {
+          "type": "string",
+          "description": "User's password."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp of the login attempt."
+        }
+      },
+      "required": ["username", "password", "createdAt"]
+    },
+    "test_log": {
+      "title": "Test Log",
+      "description": "A log for testing database connectivity.",
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["message", "timestamp"]
+    }
+  },
+  "auth": {
+    "providers": []
+  },
+  "firestore": {
+    "/credentials/{credentialId}": {
+      "schema": {
+        "$ref": "#/backend/entities/credential"
+      },
+      "description": "Collection of user login credentials."
+    },
+    "/test_logs/{testLogId}": {
+      "schema": {
+        "$ref": "#/backend/entities/test_log"
+      },
+      "description": "Collection of database test logs."
+    }
+  }
+}
